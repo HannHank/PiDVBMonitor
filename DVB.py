@@ -5,9 +5,9 @@ import datetime
 import requests
 import json
 app = Flask(__name__)
-@app.route("/")
-def index(): 
-       url = "http://widgets.vvo-online.de/abfahrtsmonitor/Abfahrten.do?ort=Dresden&hst=Rathausstraße"
+@app.route("/DVB/<Ort>/<station>/")
+def index(Ort,station): 
+       url = "http://widgets.vvo-online.de/abfahrtsmonitor/Abfahrten.do?ort={0}&hst={1}".format(Ort,station)
        response = requests.get(url)
        HTL = json.loads(response.content)  
        linie = HTL[0]
